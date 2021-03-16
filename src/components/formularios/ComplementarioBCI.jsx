@@ -229,8 +229,8 @@ const ComplementarioBCI = () => {
                                                         message: "Email obligatorio"
                                                     },
                                                     minLength: {
-                                                        value: 6, 
-                                                        message: 'Mínimo 6 carácteres'
+                                                        value: 5, 
+                                                        message: 'Mínimo 5 carácteres'
                                                         }
                                                 })}
                                                 />
@@ -246,7 +246,7 @@ const ComplementarioBCI = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Telefono"
-                                                 type="text"
+                                                 type="Number"
                                                  name="telefono"
                                                  onChange={handleInputChange}
                                                  className="form-control"
@@ -256,7 +256,7 @@ const ComplementarioBCI = () => {
                                                         message: "Teléfono obligatorio"
                                                     },
                                                     minLength: {
-                                                        value: 6, 
+                                                        value: 8, 
                                                         message: 'Mínimo 8 números'
                                                         }
                                                 })}

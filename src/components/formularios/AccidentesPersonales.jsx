@@ -310,7 +310,7 @@ const AccidentesPersonales = () => {
                                                     },
                                                    
                                                     minLength: {
-                                                        value: 1, 
+                                                        value: 5, 
                                                         message: 'Mínimo 5 carácteres'
                                                         }
                                                 })}
@@ -336,8 +336,8 @@ const AccidentesPersonales = () => {
                                                     },
                                                    
                                                     minLength: {
-                                                        value: 1, 
-                                                        message: 'Mínimo 7 números'
+                                                        value: 8, 
+                                                        message: 'Mínimo 8 números'
                                                         }
                                                 })}
                                                  />

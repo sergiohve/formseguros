@@ -111,15 +111,6 @@ const Apv = () => {
           });
 
 
-         
-    
-      
-
-
-
-          
-
-
     }
 
     return (
@@ -297,6 +288,7 @@ const Apv = () => {
                                                         value:true, 
                                                         message: "Rut obligatoria"
                                                     }
+            
                                     
                                                    
                                                 })}
@@ -322,7 +314,7 @@ const Apv = () => {
                                                     },
                                                     minLength: {
                                                         value: 4, 
-                                                        message: 'Más de 4 carácter!'
+                                                        message: 'Más de 4 carácteres'
                                                         },
                                                    
                                                 })}
@@ -363,7 +355,7 @@ const Apv = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Telefono"
-                                                 type="text"
+                                                 type="Number"
                                                  name="telefono"
                                                  onChange={handleInputChange}
                                                  className="form-control"

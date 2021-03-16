@@ -246,7 +246,7 @@ const CatastroficoBCI = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Telefono"
-                                                 type="text"
+                                                 type="Number"
                                                  name="telefono"
                                                  onChange={handleInputChange}
                                                  className="form-control"
@@ -256,7 +256,7 @@ const CatastroficoBCI = () => {
                                                         message: "Teléfono obligatorio"
                                                     },
                                                     minLength: {
-                                                        value: 6, 
+                                                        value: 8, 
                                                         message: 'Mínimo 8 números'
                                                         }
                                                 })}

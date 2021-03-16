@@ -84,7 +84,7 @@ const Vehiculos = () => {
     }
 
     const enviarDatos = (event) => {
-        event.preventDefault()
+        
         console.log('enviando datos...' + datos.nombre + ' ' + datos.rut + ' ' + datos.marca_vehiculo 
                                         + ' ' + datos.modelo_vehiculo + ' ' + datos.anno_vehiculo + ' ' + datos.patente_vehiculo
                                         + ' ' + datos.email + ' ' + datos.telefono + ' ' + estado[0].tipoSeguro + ' ' + estado[0].nombreSeguro)
@@ -135,7 +135,7 @@ const Vehiculos = () => {
             console.log(error);
           });
 
-          event.target.reset()
+         
 
 
     }
@@ -200,7 +200,7 @@ const Vehiculos = () => {
 		
 								<div className="col-12 col-lg-8 offset-lg-2">
 									<div className="cont">
-        								<form onSubmit={enviarDatos}>
+        								<form onSubmit={handleSubmit(enviarDatos)}>
 											<div className="row">
                                                 {/* 
 												<div className="col-6 col-lg-6">
@@ -219,7 +219,22 @@ const Vehiculos = () => {
                                                         type="text"
                                                         name="nombre" 
                                                         onChange={handleInputChange} 
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Nombre obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 3, 
+                                                                message: 'Mínimo 3 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.nombre && <span className="text-danger text-small d-block mb-2">{errors.nombre.message}</span>
+                                                        }
+                                                        
                                                         
 													</div>
 												</div>
@@ -229,7 +244,22 @@ const Vehiculos = () => {
                                                         type="text" 
                                                         name="rut"
                                                         onChange={ handleInputChange } 
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Rut obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 3, 
+                                                                message: 'Mínimo 3 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.rut && <span className="text-danger text-small d-block mb-2">{errors.rut.message}</span>
+                                                        }
+                                                        
 													</div>
 												</div>
                                                  {/* 
@@ -253,7 +283,21 @@ const Vehiculos = () => {
                                                         type="text"
                                                         name="marca_vehiculo"
                                                         onChange={handleInputChange}
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Marca vehiculo obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 3, 
+                                                                message: 'Mínimo 3 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.marca_vehiculo && <span className="text-danger text-small d-block mb-2">{errors.marca_vehiculo.message}</span>
+                                                        }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-6">
@@ -263,17 +307,45 @@ const Vehiculos = () => {
                                                         type="text"
                                                         name="modelo_vehiculo"
                                                         onChange={handleInputChange}
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Modelo vehiculo obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 3, 
+                                                                message: 'Mínimo 3 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.modelo_vehiculo && <span className="text-danger text-small d-block mb-2">{errors.modelo_vehiculo.message}</span>
+                                                        }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-6">
 													<div className="form-group">
                                                         <InputStyled 
                                                         placeholder="Año Vehículo"
-                                                        type="text"
+                                                        type="Number"
                                                         name="anno_vehiculo"
                                                         onChange={handleInputChange}
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Año vehiculo obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 3, 
+                                                                message: 'Mínimo 2 números'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.anno_vehiculo && <span className="text-danger text-small d-block mb-2">{errors.anno_vehiculo.message}</span>
+                                                        }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-6">
@@ -283,17 +355,45 @@ const Vehiculos = () => {
                                                         type="text"
                                                         name="patente_vehiculo"
                                                         onChange={handleInputChange}
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Patente vehiculo obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 3, 
+                                                                message: 'Mínimo 3 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.patente_vehiculo && <span className="text-danger text-small d-block mb-2">{errors.patente_vehiculo.message}</span>
+                                                        }
 													</div>
 												</div>
 												<div className="col-12 col-lg-6">
 													<div className="form-group">
                                                         <InputStyled 
                                                         placeholder="Email"
-                                                        type="text"
+                                                        type="Email"
                                                         name="email"
                                                         onChange={handleInputChange}
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Email obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 5, 
+                                                                message: 'Mínimo 5 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.email && <span className="text-danger text-small d-block mb-2">{errors.email.message}</span>
+                                                        }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-6">
@@ -301,10 +401,24 @@ const Vehiculos = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Telefono"
-                                                 type="text"
+                                                 type="Number"
                                                  name="telefono"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Teléfono obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 8, 
+                                                        message: 'Mínimo 8 números'
+                                                        }
+                                                })}
+                                                />
+                                                  {
+                                                    errors.telefono && <span className="text-danger text-small d-block mb-2">{errors.telefono.message}</span>
+                                                }
 													</div>
 												</div>
 											</div>

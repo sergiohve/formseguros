@@ -83,7 +83,7 @@ const SaludBupa = () => {
 
     
     const enviarDatos = (event) => {
-        event.preventDefault()
+       
         console.log('enviando datos...' + datos.nombre + ' ' + datos.mail + ' ' + datos.telefono)
         console.log(datos.nombre)
 
@@ -111,7 +111,7 @@ const SaludBupa = () => {
           });
 
 
-          event.target.reset()
+        
 
 
     }
@@ -154,7 +154,7 @@ const SaludBupa = () => {
                                         />
 								<div className="col-12 col-lg-8 offset-lg-2">
 									<div className="cont">
-										<form onSubmit={enviarDatos}>
+										<form onSubmit={handleSubmit(enviarDatos)}>
 											<div className="row">
                                                 {/* 
 												<div className="col-6 col-lg-6">
@@ -173,17 +173,45 @@ const SaludBupa = () => {
                                                         type="text"
                                                         name="nombre" 
                                                         onChange={handleInputChange} 
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Nombre titular obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 3, 
+                                                                message: 'Mínimo 3 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.nombre && <span className="text-danger text-small d-block mb-2">{errors.nombre.message}</span>
+                                                        }
                                                         
 													</div>
 												</div>
 												<div className="col-12 col-lg-6">
 													<div className="form-group">
                                                         <InputStyled placeholder="Edad del Titular" 
-                                                        type="text" 
+                                                        type="Number" 
                                                         name="edadTitular"
                                                         onChange={ handleInputChange } 
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Edad del titular obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 1, 
+                                                                message: 'Mínimo 1 número'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.edadTitular && <span className="text-danger text-small d-block mb-2">{errors.edadTitular.message}</span>
+                                                        }
 													</div>
 												</div>
                                                  {/* 
@@ -206,10 +234,24 @@ const SaludBupa = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Edad del cónyuge"
-                                                 type="text"
+                                                 type="Number"
                                                  name="edadConyuge"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Edad del cónyuge obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 1, 
+                                                        message: 'Mínimo 1 número'
+                                                        }
+                                                })}
+                                                />
+                                                  {
+                                                    errors.edadConyuge && <span className="text-danger text-small d-block mb-2">{errors.edadConyuge.message}</span>
+                                                }
 													</div>
 												</div>
 
@@ -218,10 +260,24 @@ const SaludBupa = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Numero de Hijos"
-                                                 type="text"
+                                                 type="Number"
                                                  name="numeroHijos"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Número de hijos obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 1, 
+                                                        message: 'Mínimo 1 número'
+                                                        }
+                                                })}
+                                                />
+                                                  {
+                                                    errors.numeroHijos && <span className="text-danger text-small d-block mb-2">{errors.numeroHijos.message}</span>
+                                                }
 													</div>
 												</div>
 
@@ -233,7 +289,21 @@ const SaludBupa = () => {
                                                  type="text"
                                                  name="edadesHijos"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Edades de los hijos obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 1, 
+                                                        message: 'Mínimo 1 carácter'
+                                                        }
+                                                })}
+                                                />
+                                                  {
+                                                    errors.edadesHijos && <span className="text-danger text-small d-block mb-2">{errors.edadesHijos.message}</span>
+                                                }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-6">
@@ -241,10 +311,24 @@ const SaludBupa = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Mail"
-                                                 type="text"
+                                                 type="Email"
                                                  name="mail"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Email obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 5, 
+                                                        message: 'Mínimo 5 carácteres'
+                                                        }
+                                                })}
+                                                />
+                                                  {
+                                                    errors.mail && <span className="text-danger text-small d-block mb-2">{errors.mail.message}</span>
+                                                }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-12">
@@ -252,10 +336,24 @@ const SaludBupa = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Telefono"
-                                                 type="text"
+                                                 type="Number"
                                                  name="telefono"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Teléfono obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 8, 
+                                                        message: 'Mínimo 8 números'
+                                                        }
+                                                })}
+                                                />
+                                                  {
+                                                    errors.mail && <span className="text-danger text-small d-block mb-2">{errors.mail.message}</span>
+                                                }
 													</div>
 												</div>
 

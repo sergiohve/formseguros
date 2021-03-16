@@ -83,7 +83,7 @@ const Tipo = () => {
     }
 
     const enviarDatos = (event) => {
-        event.preventDefault()
+       
         console.log('enviando datos...' + datos.nombre + ' ' + datos.email + ' ' + datos.telefono)
         console.log(datos.nombre)
 
@@ -116,7 +116,7 @@ const Tipo = () => {
           });
 
 
-          event.target.reset()
+          
 
 
     }
@@ -160,7 +160,7 @@ const Tipo = () => {
                                         />
 								<div className="col-12 col-lg-8 offset-lg-2">
 									<div className="cont">
-										<form onSubmit={enviarDatos}>
+										<form onSubmit={handleSubmit(enviarDatos)}>
 											<div className="row">
                                                 {/* 
 												<div className="col-6 col-lg-6">
@@ -179,17 +179,45 @@ const Tipo = () => {
                                                         type="text"
                                                         name="nombre" 
                                                         onChange={handleInputChange} 
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Nombre obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 3, 
+                                                                message: 'Mínimo 3 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.nombre && <span className="text-danger text-small d-block mb-2">{errors.nombre.message}</span>
+                                                        }
                                                         
 													</div>
 												</div>
 												<div className="col-12 col-lg-6">
 													<div className="form-group">
-                                                        <InputStyled placeholder="Correo" 
-                                                        type="text" 
+                                                        <InputStyled placeholder="Email" 
+                                                        type="Email" 
                                                         name="email"
                                                         onChange={ handleInputChange } 
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Email obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 3, 
+                                                                message: 'Mínimo 5 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.email && <span className="text-danger text-small d-block mb-2">{errors.email.message}</span>
+                                                        }
 													</div>
 												</div>
                                                  {/* 
@@ -212,10 +240,24 @@ const Tipo = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Telefono"
-                                                 type="text"
+                                                 type="Number"
                                                  name="telefono"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Teléfono obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 8, 
+                                                        message: 'Mínimo 8 números'
+                                                        }
+                                                })}
+                                                />
+                                                  {
+                                                    errors.telefono && <span className="text-danger text-small d-block mb-2">{errors.telefono.message}</span>
+                                                }
 													</div>
 												</div>
 											</div>
