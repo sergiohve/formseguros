@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import  {useForm} from "react-hook-form"
 import { BrowserRouter as Router,
 	Switch,
 	Route,
@@ -30,7 +31,7 @@ const InputStyled = styled.input`
 
 
 const CatastroficoBCI = () => {
-
+    const {register, errors, handleSubmit}= useForm();
     const history = useHistory();
     const { state } = useLocation();
     const estado = state;
@@ -79,7 +80,7 @@ const CatastroficoBCI = () => {
 
     
     const enviarDatos = (event) => {
-        event.preventDefault()
+       
         console.log('enviando datos...' + datos.nombreTitular + ' ' + datos.mail + ' ' + datos.telefono)
         console.log(datos.nombreTitular)
 
@@ -104,7 +105,7 @@ const CatastroficoBCI = () => {
           });
 
 
-          event.target.reset()
+          
 
 
     }
@@ -147,7 +148,7 @@ const CatastroficoBCI = () => {
                                         />
 								<div className="col-12 col-lg-8 offset-lg-2">
 									<div className="cont">
-										<form onSubmit={enviarDatos}>
+										<form onSubmit={handleSubmit(enviarDatos)}>
 											<div className="row">
                                                 {/* 
 												<div className="col-6 col-lg-6">
@@ -167,17 +168,49 @@ const CatastroficoBCI = () => {
                                                         type="text"
                                                         name="nombreTitular" 
                                                         onChange={handleInputChange} 
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Nombre de titular de la poliza obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 5, 
+                                                                message: 'Mínimo 5 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.nombreTitular && <span className="text-danger text-small d-block mb-2">{errors.nombreTitular.message}</span>
+                                                        }
                                                         
 													</div>
 												</div>
 												<div className="col-12 col-lg-12">
 													<div className="form-group">
                                                         <InputStyled placeholder="Numero de asegurados por poliza" 
-                                                        type="text" 
+                                                        type="Number" 
                                                         name="numeroAsegurado"
                                                         onChange={ handleInputChange } 
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Número de asegurados por poliza obligatorio"
+                                                            },
+                                                            maxLength: {
+                                                                value: 2, 
+                                                                message: 'Maximo 2 carácteres'
+                                                                },
+                                                            minLength: {
+                                                                value: 1, 
+                                                                message: 'Mínimo 1 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.numeroAsegurado && <span className="text-danger text-small d-block mb-2">{errors.numeroAsegurado.message}</span>
+                                                        }
 													</div>
 												</div>
 
@@ -186,10 +219,25 @@ const CatastroficoBCI = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Mail"
-                                                 type="text"
+                                                 type="Email"
                                                  name="mail"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Email obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 6, 
+                                                        message: 'Mínimo 6 carácteres'
+                                                        }
+                                                })}
+                                                />
+                                                 {
+                                                errors.mail && <span className="text-danger text-small d-block mb-2">{errors.mail.message}</span>
+                                                }
+
 													</div>
 												</div>
                                                
@@ -201,7 +249,21 @@ const CatastroficoBCI = () => {
                                                  type="text"
                                                  name="telefono"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Teléfono obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 6, 
+                                                        message: 'Mínimo 8 números'
+                                                        }
+                                                })}
+                                                />
+                                                 {
+                                                errors.telefono && <span className="text-danger text-small d-block mb-2">{errors.telefono.message}</span>
+                                                }
 													</div>
 												</div>
 

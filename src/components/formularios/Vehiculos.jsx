@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
+import  {useForm} from "react-hook-form"
 import { useRut } from 'react-rut';
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
@@ -42,7 +43,7 @@ const InputStyled = styled.input`
 
 const Vehiculos = () => {
     const history = useHistory();
-
+    const {register, errors, handleSubmit}= useForm();
     const { state } = useLocation();
     const estado = state;
     const titulo = 'Cotiza tu '+estado[0].nombreSeguro

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import  {useForm} from "react-hook-form"
 import { BrowserRouter as Router,
 	Switch,
 	Route,
@@ -30,7 +31,7 @@ const InputStyled = styled.input`
 
 
 const Oncologico = () => {
-
+    const {register, errors, handleSubmit}= useForm();
     const history = useHistory();
     const { state } = useLocation();
     const estado = state;
@@ -77,7 +78,7 @@ const Oncologico = () => {
 
     
     const enviarDatos = (event) => {
-        event.preventDefault()
+       
         console.log('enviando datos...' + datos.nombrePoliza + ' ' + datos.mail + ' ' + datos.telefono)
         console.log(datos.nombrePoliza)
 
@@ -104,7 +105,7 @@ const Oncologico = () => {
           });
 
 
-          event.target.reset()
+          
 
 
     }
@@ -147,7 +148,7 @@ const Oncologico = () => {
                                         />
 								<div className="col-12 col-lg-8 offset-lg-2">
 									<div className="cont">
-										<form onSubmit={enviarDatos}>
+										<form onSubmit={handleSubmit(enviarDatos)}>
 											<div className="row">
                                                 {/* 
 												<div className="col-6 col-lg-6">
@@ -166,8 +167,21 @@ const Oncologico = () => {
                                                         type="text"
                                                         name="nombrePoliza" 
                                                         onChange={handleInputChange} 
-                                                        className="form-control"/>
-                                                        
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Nombre del titular de la poliza obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 3, 
+                                                                message: 'Mínimo 3 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.nombrePoliza && <span className="text-danger text-small d-block mb-2">{errors.nombrePoliza.message}</span>
+                                                        }
 													</div>
 												</div>
 												<div className="col-12 col-lg-6">
@@ -176,7 +190,21 @@ const Oncologico = () => {
                                                         type="text" 
                                                         name="rut"
                                                         onChange={ handleInputChange } 
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Rut obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 3, 
+                                                                message: 'Mínimo 3 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.rut && <span className="text-danger text-small d-block mb-2">{errors.rut.message}</span>
+                                                        }
 													</div>
 												</div>
 
@@ -185,10 +213,24 @@ const Oncologico = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Número de integrantes del grupo familiar"
-                                                 type="text"
+                                                 type="Number"
                                                  name="numeroIntegrantes"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Número de integrantes del grupo familiar obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 1, 
+                                                        message: 'Mínimo 1 número'
+                                                        }
+                                                })}
+                                                />
+                                                  {
+                                                    errors.numeroIntegrantes && <span className="text-danger text-small d-block mb-2">{errors.numeroIntegrantes.message}</span>
+                                                }
 													</div>
 												</div>
                                                
@@ -198,10 +240,24 @@ const Oncologico = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Edad del mayor del grupo familiar"
-                                                 type="text"
+                                                 type="Number"
                                                  name="edadMayor"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Edad del mayor del grupo familiar obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 1, 
+                                                        message: 'Mínimo 1 número'
+                                                        }
+                                                })}
+                                                />
+                                                  {
+                                                    errors.edadMayor && <span className="text-danger text-small d-block mb-2">{errors.edadMayor.message}</span>
+                                                }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-6">
@@ -209,10 +265,24 @@ const Oncologico = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Mail"
-                                                 type="text"
+                                                 type="Email"
                                                  name="mail"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Email obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 4, 
+                                                        message: 'Mínimo 4 carácteres'
+                                                        }
+                                                })}
+                                                />
+                                                  {
+                                                    errors.mail && <span className="text-danger text-small d-block mb-2">{errors.mail.message}</span>
+                                                }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-12">
@@ -220,10 +290,24 @@ const Oncologico = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Telefono"
-                                                 type="text"
+                                                 type="Number"
                                                  name="telefono"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Teléfono obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 4, 
+                                                        message: 'Mínimo 8 números'
+                                                        }
+                                                })}
+                                                />
+                                                  {
+                                                    errors.telefono && <span className="text-danger text-small d-block mb-2">{errors.telefono.message}</span>
+                                                }
 													</div>
 												</div>
 

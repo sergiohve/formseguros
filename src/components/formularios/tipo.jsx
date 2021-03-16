@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
+import  {useForm} from "react-hook-form"
 import { BrowserRouter as Router,
 	Switch,
 	Route,
@@ -34,7 +35,7 @@ const InputStyled = styled.input`
 
 
 const Tipo = () => {
-
+    const {register, errors, handleSubmit}= useForm();
     const history = useHistory();
 
     const { state } = useLocation();

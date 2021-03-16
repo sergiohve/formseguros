@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import  {useForm} from "react-hook-form"
 import { BrowserRouter as Router,
 	Switch,
 	Route,
@@ -29,6 +30,7 @@ const InputStyled = styled.input`
 `
 
 const Apv = () => {
+    const {register, errors, handleSubmit}= useForm();
     const history = useHistory();
     const { state } = useLocation();
     const estado = state;
@@ -79,7 +81,7 @@ const Apv = () => {
 
     
     const enviarDatos = (event) => {
-        event.preventDefault()
+       
         console.log('enviando datos...' + datos.nombre + ' ' + datos.mail + ' ' + datos.telefono)
         console.log(datos.nombre)
 
@@ -115,7 +117,7 @@ const Apv = () => {
 
 
 
-          event.target.reset()
+          
 
 
     }
@@ -149,7 +151,7 @@ const Apv = () => {
 								</div>
 								<div className="col-12 col-lg-8 offset-lg-2">
 									<div className="cont">
-										<form onSubmit={enviarDatos}>
+										<form onSubmit={handleSubmit(enviarDatos)}>
 											<div className="row">
                                                 {/* 
 												<div className="col-6 col-lg-6">
@@ -168,17 +170,50 @@ const Apv = () => {
                                                         type="text"
                                                         name="nombre" 
                                                         onChange={handleInputChange} 
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Nombre obligatorio"
+                                                            },
+                                                            minLength: {
+                                                                value: 5, 
+                                                                message: 'Mínimo 5 carácteres'
+                                                                }
+                                                        })}
+                                                        />
+                                                          {
+                                                            errors.nombre && <span className="text-danger text-small d-block mb-2">{errors.nombre.message}</span>
+                                                        }
                                                         
 													</div>
 												</div>
 												<div className="col-12 col-lg-6">
 													<div className="form-group">
                                                         <InputStyled placeholder="Edad" 
-                                                        type="text" 
+                                                        type="Number" 
                                                         name="edad"
                                                         onChange={ handleInputChange } 
-                                                        className="form-control"/>
+                                                        className="form-control"
+                                                        ref={register({
+                                                            required:{
+                                                                value:true, 
+                                                                message: "Edad obligatorio"
+                                                            },
+                                                            maxLength: {
+                                                                value: 2, 
+                                                                message: 'No más de 2 numeros!'
+                                                                },
+                                                            minLength: {
+                                                                value: 1, 
+                                                                message: 'Mínimo 1 número'
+                                                                }
+                                                        })}
+                                                        />
+                                                        {
+                                                            errors.edad && <span className="text-danger text-small d-block mb-2">{errors.edad.message}</span>
+                                                        }
+                                                        
 													</div>
 												</div>
                                                  {/* 
@@ -204,7 +239,22 @@ const Apv = () => {
                                                  type="text"
                                                  name="sexo"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Sexo obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 1, 
+                                                        message: 'Más de 1 carácter!'
+                                                        },
+                                                   
+                                                })}
+                                                 />
+                                                  {
+                                                    errors.sexo && <span className="text-danger text-small d-block mb-2">{errors.sexo.message}</span>
+                                                  }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-6">
@@ -215,7 +265,22 @@ const Apv = () => {
                                                  type="text"
                                                  name="fumador"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Sexo obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 1, 
+                                                        message: 'Más de 1 carácter!'
+                                                        },
+                                                   
+                                                })}
+                                                 />
+                                                  {
+                                                    errors.fumador && <span className="text-danger text-small d-block mb-2">{errors.fumador.message}</span>
+                                                  }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-6">
@@ -226,7 +291,19 @@ const Apv = () => {
                                                  type="text"
                                                  name="rut"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Rut obligatoria"
+                                                    }
+                                    
+                                                   
+                                                })}
+                                                 />
+                                                 {
+                                                    errors.rut && <span className="text-danger text-small d-block mb-2">{errors.rut.message}</span>
+                                                  }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-6">
@@ -237,7 +314,22 @@ const Apv = () => {
                                                  type="text"
                                                  name="ingreso"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Ingreso obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 4, 
+                                                        message: 'Más de 4 carácter!'
+                                                        },
+                                                   
+                                                })}
+                                                 />
+                                                  {
+                                                    errors.ingreso && <span className="text-danger text-small d-block mb-2">{errors.ingreso.message}</span>
+                                                  }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-6">
@@ -245,10 +337,25 @@ const Apv = () => {
                                                     <InputStyled
                                                  
                                                  placeholder="Mail"
-                                                 type="text"
+                                                 type="Email"
                                                  name="mail"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Email obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 5, 
+                                                        message: 'Más de 5 carácter!'
+                                                        },
+                                                   
+                                                })}
+                                                 />
+                                                   {
+                                                    errors.mail && <span className="text-danger text-small d-block mb-2">{errors.mail.message}</span>
+                                                  }
 													</div>
 												</div>
                                                 <div className="col-12 col-lg-6">
@@ -259,7 +366,22 @@ const Apv = () => {
                                                  type="text"
                                                  name="telefono"
                                                  onChange={handleInputChange}
-                                                 className="form-control"/>
+                                                 className="form-control"
+                                                 ref={register({
+                                                    required:{
+                                                        value:true, 
+                                                        message: "Teléfono obligatorio"
+                                                    },
+                                                    minLength: {
+                                                        value: 8, 
+                                                        message: 'Más de 8 números!'
+                                                        },
+                                                   
+                                                })}
+                                                 />
+                                                 {
+                                                    errors.telefono && <span className="text-danger text-small d-block mb-2">{errors.telefono.message}</span>
+                                                  }
 													</div>
 												</div>
 
