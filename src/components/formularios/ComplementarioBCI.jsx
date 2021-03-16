@@ -37,13 +37,10 @@ const ComplementarioBCI = () => {
     const titulo = 'Cotiza tu '+estado[0].nombreSeguro
     
     const [datos, setDatos] = useState({
-        nombre: '',
-        edadTitular: '',
-        edadConyuge: '',
-        numeroHijos: '',
-        edadesHijos: '',
-        mail: '',
-        telefono: '',
+        nombreTitular: "",
+        numeroAsegurado: "",
+        mail: "",
+        telefono: "",
         tipoSeguro: estado[0].tipoSeguro,
         nombreSeguro: estado[0].nombreSeguro
 
@@ -56,7 +53,7 @@ const ComplementarioBCI = () => {
         setDatos({
             ...datos,
             [event.target.name] : event.target.value
-        
+           
 
                 
                 
@@ -83,19 +80,16 @@ const ComplementarioBCI = () => {
     
     const enviarDatos = (event) => {
         event.preventDefault()
-        console.log('enviando datos...' + datos.nombre + ' ' + datos.mail + ' ' + datos.telefono)
-        console.log(datos.nombre)
+        console.log('enviando datos...' + datos.nombreTitular + ' ' + datos.mail + ' ' + datos.telefono)
+        console.log(datos.nombreTitular)
 
     
-        axios.post(`${process.env.REACT_APP_API_URL}/formulario-salud-bupas`, {
+        axios.post(`${process.env.REACT_APP_API_URL}/formulario-catastrofico-bcis`, {
 
-            nombre: datos.nombre,
-            edadTitular: datos.edadTitular,
-            edadConyuge: datos.edadConyuge,
-            numeroHijos: datos.numeroHijos,
-            edadesHijos : datos.edadesHijos,
-            mail : datos.mail,  
-            telefono : datos.telefono,
+            nombreTitular: datos.nombreTitular,
+            numeroAsegurado: datos.nombreAsegurado,
+            mail: datos.mail,
+            telefono: datos.telefono,
             tipoSeguro: estado[0].tipoSeguro,
             nombreSeguro: estado[0].nombreSeguro
 
@@ -164,13 +158,14 @@ const ComplementarioBCI = () => {
                                                 </div>
                                                 */}
 											</div>
+
 											<div className="row">
                                             <div className="col-12 col-lg-12">
 													<div className="form-group">
                                                         <InputStyled 
                                                         placeholder="Nombre titular de la poliza" 
                                                         type="text"
-                                                        name="nombre" 
+                                                        name="nombreTitular" 
                                                         onChange={handleInputChange} 
                                                         className="form-control"/>
                                                         
@@ -180,15 +175,12 @@ const ComplementarioBCI = () => {
 													<div className="form-group">
                                                         <InputStyled placeholder="Numero de asegurados por poliza" 
                                                         type="text" 
-                                                        name="edadTitular"
+                                                        name="numeroAsegurado"
                                                         onChange={ handleInputChange } 
                                                         className="form-control"/>
 													</div>
 												</div>
 
-
-                                               
-                                                
                                                 <div className="col-12 col-lg-6">
 													<div className="form-group">
                                                     <InputStyled
@@ -200,6 +192,7 @@ const ComplementarioBCI = () => {
                                                  className="form-control"/>
 													</div>
 												</div>
+                                               
                                                 <div className="col-12 col-lg-6">
 													<div className="form-group">
                                                     <InputStyled

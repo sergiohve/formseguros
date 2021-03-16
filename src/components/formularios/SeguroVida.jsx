@@ -37,13 +37,13 @@ const SeguroVida = () => {
     const titulo = 'Cotiza tu '+estado[0].nombreSeguro
     
     const [datos, setDatos] = useState({
-        nombre: '',
-        edadTitular: '',
-        edadConyuge: '',
-        numeroHijos: '',
-        edadesHijos: '',
-        mail: '',
-        telefono: '',
+        
+        nombre: "",
+        edad: "",
+        sexo: "",
+        fumador: "",
+        mail: "",
+        telefono: "",
         tipoSeguro: estado[0].tipoSeguro,
         nombreSeguro: estado[0].nombreSeguro
 
@@ -87,15 +87,14 @@ const SeguroVida = () => {
         console.log(datos.nombre)
 
     
-        axios.post(`${process.env.REACT_APP_API_URL}/formulario-salud-bupas`, {
+        axios.post(`${process.env.REACT_APP_API_URL}/formulario-seguros-de-vidas`, {
 
             nombre: datos.nombre,
-            edadTitular: datos.edadTitular,
-            edadConyuge: datos.edadConyuge,
-            numeroHijos: datos.numeroHijos,
-            edadesHijos : datos.edadesHijos,
-            mail : datos.mail,  
-            telefono : datos.telefono,
+            edad: datos.edad,
+            sexo: datos.sexo,
+            fumador: datos.fumador,
+            mail: datos.mail,
+            telefono: datos.telefono,
             tipoSeguro: estado[0].tipoSeguro,
             nombreSeguro: estado[0].nombreSeguro
 
@@ -164,6 +163,7 @@ const SeguroVida = () => {
                                                 </div>
                                                 */}
 											</div>
+           
 											<div className="row">
                                             <div className="col-12 col-lg-6">
 													<div className="form-group">
@@ -180,7 +180,7 @@ const SeguroVida = () => {
 													<div className="form-group">
                                                         <InputStyled placeholder="Edad" 
                                                         type="text" 
-                                                        name="edadTitular"
+                                                        name="edad"
                                                         onChange={ handleInputChange } 
                                                         className="form-control"/>
 													</div>
@@ -218,7 +218,7 @@ const SeguroVida = () => {
                                                  
                                                  placeholder="Fumador"
                                                  type="text"
-                                                 name="Fumador"
+                                                 name="fumador"
                                                  onChange={handleInputChange}
                                                  className="form-control"/>
 													</div>

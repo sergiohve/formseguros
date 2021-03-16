@@ -37,13 +37,12 @@ const Oncologico = () => {
     const titulo = 'Cotiza tu '+estado[0].nombreSeguro
     
     const [datos, setDatos] = useState({
-        nombre: '',
-        edadTitular: '',
-        edadConyuge: '',
-        numeroHijos: '',
-        edadesHijos: '',
-        mail: '',
-        telefono: '',
+        nombrePoliza: "",
+        rut: "",
+        numeroIntegrantes: "",
+        edadMayor: "",
+        mail: "",
+        telefono: "",
         tipoSeguro: estado[0].tipoSeguro,
         nombreSeguro: estado[0].nombreSeguro
 
@@ -55,11 +54,7 @@ const Oncologico = () => {
         
         setDatos({
             ...datos,
-            [event.target.name] : event.target.value
-           
-
-                
-                
+            [event.target.name] : event.target.value       
         })
     }
 
@@ -83,19 +78,18 @@ const Oncologico = () => {
     
     const enviarDatos = (event) => {
         event.preventDefault()
-        console.log('enviando datos...' + datos.nombre + ' ' + datos.mail + ' ' + datos.telefono)
-        console.log(datos.nombre)
+        console.log('enviando datos...' + datos.nombrePoliza + ' ' + datos.mail + ' ' + datos.telefono)
+        console.log(datos.nombrePoliza)
 
     
-        axios.post(`${process.env.REACT_APP_API_URL}/formulario-salud-bupas`, {
+        axios.post(`${process.env.REACT_APP_API_URL}/formulario-oncologicos`, {
 
-            nombre: datos.nombre,
-            edadTitular: datos.edadTitular,
-            edadConyuge: datos.edadConyuge,
-            numeroHijos: datos.numeroHijos,
-            edadesHijos : datos.edadesHijos,
-            mail : datos.mail,  
-            telefono : datos.telefono,
+            nombrePoliza: datos.nombrePoliza,
+            rut: datos.rut,
+            numeroIntegrantes: datos.numeroIntegrantes,
+            edadMayor: datos.edadMayor,
+            mail: datos.mail,
+            telefono: datos.telefono,
             tipoSeguro: estado[0].tipoSeguro,
             nombreSeguro: estado[0].nombreSeguro
 
@@ -170,7 +164,7 @@ const Oncologico = () => {
                                                         <InputStyled 
                                                         placeholder="Nombre titular de la poliza" 
                                                         type="text"
-                                                        name="nombre" 
+                                                        name="nombrePoliza" 
                                                         onChange={handleInputChange} 
                                                         className="form-control"/>
                                                         
@@ -192,7 +186,7 @@ const Oncologico = () => {
                                                  
                                                  placeholder="Número de integrantes del grupo familiar"
                                                  type="text"
-                                                 name="mail"
+                                                 name="numeroIntegrantes"
                                                  onChange={handleInputChange}
                                                  className="form-control"/>
 													</div>
@@ -205,7 +199,7 @@ const Oncologico = () => {
                                                  
                                                  placeholder="Edad del mayor del grupo familiar"
                                                  type="text"
-                                                 name="mail"
+                                                 name="edadMayor"
                                                  onChange={handleInputChange}
                                                  className="form-control"/>
 													</div>
@@ -214,9 +208,9 @@ const Oncologico = () => {
 													<div className="form-group">
                                                     <InputStyled
                                                  
-                                                 placeholder="Telefono"
+                                                 placeholder="Mail"
                                                  type="text"
-                                                 name="telefono"
+                                                 name="mail"
                                                  onChange={handleInputChange}
                                                  className="form-control"/>
 													</div>

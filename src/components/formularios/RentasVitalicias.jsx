@@ -34,14 +34,14 @@ const RentasVitalicias = () => {
     const titulo = 'Cotiza tu '+estado[0].nombreSeguro
 
     const [datos, setDatos] = useState({
-        nombre: '',
-        afp: '',
-        edad: '',
-        monto: '',
-        sexo: '',   
-        mail: '',
-        telefono: '',
-        tipoSeguro: estado[0].tipoSeguro ,
+        Nombre: "",
+        afp: "",
+        edad: "",
+        monto: "",
+        sexo: "",
+        mail: "",
+        telefono: "",
+        tipoSeguro: estado[0].tipoSeguro,
         nombreSeguro: estado[0].nombreSeguro
     })
 
@@ -76,24 +76,24 @@ const RentasVitalicias = () => {
     
     const enviarDatos = (event) => {
         event.preventDefault()
-        console.log('enviando datos...' + datos.nombre + ' ' + datos.mail + ' ' + datos.telefono)
-        console.log(datos.nombre)
+        console.log('enviando datos...' + datos.Nombre + ' ' + datos.mail + ' ' + datos.telefono)
+        console.log(datos.Nombre);
 
 
-        if(!datos.nombre.trim()){return}
+        if(!datos.Nombre.trim()){return}
         if(!datos.mail.trim()){return}
         if(!datos.telefono.trim()){return}
     
         axios.post(`${process.env.REACT_APP_API_URL}/formulario-rentas-vitalicias`, {
 
-            nombre: datos.nombre,
+            Nombre: datos.Nombre,
             afp: datos.afp,
             edad: datos.edad,
             monto: datos.monto,
-            sexo: datos.sexo,   
+            sexo: datos.sexo,
             mail: datos.mail,
-            telefono: datos.teledono,
-            tipoSeguro: estado[0].tipoSeguro,
+            telefono: datos.telefono,
+            tipoSeguro: estado[0].tipoSeguro ,
             nombreSeguro: estado[0].nombreSeguro
 
           })
@@ -160,13 +160,14 @@ const RentasVitalicias = () => {
                                                 </div>
                                                 */}
 											</div>
+           
 											<div className="row">
                                             <div className="col-12 col-lg-6">
 													<div className="form-group">
                                                         <InputStyled 
                                                         placeholder="Nombre" 
                                                         type="text"
-                                                        name="nombre" 
+                                                        name="Nombre" 
                                                         onChange={handleInputChange} 
                                                         className="form-control"/>
                                                         

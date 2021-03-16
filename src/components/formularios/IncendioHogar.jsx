@@ -59,7 +59,7 @@ const IncendioHogar = () => {
 
 
     const handleInputChange = (event) => {
-        console.log(event.target.value)
+        
         setDatos({
             ...datos,
             [event.target.name] : event.target.value
@@ -114,7 +114,7 @@ const IncendioHogar = () => {
           .then(function (response) {
             console.log(response);
             notify()
-          //  redirectTimeout()
+           redirectTimeout()
           })
           .catch(function (error) {
             console.log(error);

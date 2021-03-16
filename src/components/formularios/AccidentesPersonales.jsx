@@ -37,16 +37,15 @@ const AccidentesPersonales = () => {
     const titulo = 'Cotiza tu '+estado[0].nombreSeguro
     
     const [datos, setDatos] = useState({
-        nombre: '',
-        edadTitular: '',
-        edadConyuge: '',
-        numeroHijos: '',
-        edadesHijos: '',
-        mail: '',
-        telefono: '',
+        nombreAsegurado: "",
+        nombreEmpresa: "",
+        actividadEmpresa: "",
+        actividadTrabajador: "",
+        edadTrabajador: "",
+        mail: "",
+        telefono: "",
         tipoSeguro: estado[0].tipoSeguro,
         nombreSeguro: estado[0].nombreSeguro
-
     })
 
     const handleInputChange = (event) => {
@@ -83,21 +82,21 @@ const AccidentesPersonales = () => {
     
     const enviarDatos = (event) => {
         event.preventDefault()
-        console.log('enviando datos...' + datos.nombre + ' ' + datos.mail + ' ' + datos.telefono)
-        console.log(datos.nombre)
+        console.log('enviando datos...' + datos.nombreAsegurado + ' ' + datos.mail + ' ' + datos.telefono)
+        console.log(datos.nombreAsegurado)
 
     
-        axios.post(`${process.env.REACT_APP_API_URL}/formulario-salud-bupas`, {
+        axios.post(`${process.env.REACT_APP_API_URL}/formulario-accidentes-personales`, {
 
-            nombre: datos.nombre,
-            edadTitular: datos.edadTitular,
-            edadConyuge: datos.edadConyuge,
-            numeroHijos: datos.numeroHijos,
-            edadesHijos : datos.edadesHijos,
-            mail : datos.mail,  
-            telefono : datos.telefono,
-            tipoSeguro: estado[0].tipoSeguro,
-            nombreSeguro: estado[0].nombreSeguro
+                nombreAsegurado: datos.nombreAsegurado,
+                nombreEmpresa: datos.nombreEmpresa,
+                actividadEmpresa: datos.actividadEmpresa,
+                actividadTrabajador: datos.actividadTrabajador,
+                edadTrabajador: datos.edadTrabajador,
+                mail: datos.mail,
+                telefono: datos.telefono,
+                tipoSeguro: estado[0].tipoSeguro,
+                nombreSeguro: estado[0].nombreSeguro
 
           })
           .then(function (response) {
@@ -164,13 +163,14 @@ const AccidentesPersonales = () => {
                                                 </div>
                                                 */}
 											</div>
+             
 											<div className="row">
                                             <div className="col-12 col-lg-6">
 													<div className="form-group">
                                                         <InputStyled 
                                                         placeholder="Nombre del asegurado" 
                                                         type="text"
-                                                        name="nombre" 
+                                                        name="nombreAsegurado" 
                                                         onChange={handleInputChange} 
                                                         className="form-control"/>
                                                         
@@ -180,7 +180,7 @@ const AccidentesPersonales = () => {
 													<div className="form-group">
                                                         <InputStyled placeholder="Nombre de la empresa" 
                                                         type="text" 
-                                                        name="edadTitular"
+                                                        name="nombreEmpresa"
                                                         onChange={ handleInputChange } 
                                                         className="form-control"/>
 													</div>
@@ -189,7 +189,7 @@ const AccidentesPersonales = () => {
 													<div className="form-group">
                                                         <InputStyled placeholder="Actividad de la empresa" 
                                                         type="text" 
-                                                        name="edadTitular"
+                                                        name="actividadEmpresa"
                                                         onChange={ handleInputChange } 
                                                         className="form-control"/>
 													</div>
@@ -198,16 +198,16 @@ const AccidentesPersonales = () => {
 													<div className="form-group">
                                                         <InputStyled placeholder="Actividad del trabajador" 
                                                         type="text" 
-                                                        name="edadTitular"
+                                                        name="actividadTrabajador"
                                                         onChange={ handleInputChange } 
                                                         className="form-control"/>
 													</div>
 												</div>
-                                                <div className="col-12 col-lg-12">
+                                                <div className="col-12 col-lg-6">
 													<div className="form-group">
                                                         <InputStyled placeholder="Edad del trabajador" 
                                                         type="text" 
-                                                        name="edadTitular"
+                                                        name="edadTrabajador"
                                                         onChange={ handleInputChange } 
                                                         className="form-control"/>
 													</div>
@@ -236,6 +236,7 @@ const AccidentesPersonales = () => {
                                                  className="form-control"/>
 													</div>
 												</div>
+                                                
 
 											</div>
 											<button type="submit" className="boton"><span>Enviar</span></button>

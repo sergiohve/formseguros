@@ -37,13 +37,10 @@ const Salud7 = () => {
     const titulo = 'Cotiza tu '+estado[0].nombreSeguro
     
     const [datos, setDatos] = useState({
-        nombre: '',
-        edadTitular: '',
-        edadConyuge: '',
-        numeroHijos: '',
-        edadesHijos: '',
-        mail: '',
-        telefono: '',
+        nombreTitular: "",
+        rut: "",
+        mail: "",
+        telefono: "",
         tipoSeguro: estado[0].tipoSeguro,
         nombreSeguro: estado[0].nombreSeguro
 
@@ -55,11 +52,7 @@ const Salud7 = () => {
         
         setDatos({
             ...datos,
-            [event.target.name] : event.target.value
-            
-
-                
-                
+            [event.target.name] : event.target.value     
         })
     }
 
@@ -83,19 +76,16 @@ const Salud7 = () => {
     
     const enviarDatos = (event) => {
         event.preventDefault()
-        console.log('enviando datos...' + datos.nombre + ' ' + datos.mail + ' ' + datos.telefono)
-        console.log(datos.nombre)
+        console.log('enviando datos...' + datos.nombreTitular + ' ' + datos.mail + ' ' + datos.telefono)
+        console.log(datos.nombreTitular)
 
     
-        axios.post(`${process.env.REACT_APP_API_URL}/formulario-salud-bupas`, {
+        axios.post(`${process.env.REACT_APP_API_URL}/formulario-salud-7-s`, {
 
-            nombre: datos.nombre,
-            edadTitular: datos.edadTitular,
-            edadConyuge: datos.edadConyuge,
-            numeroHijos: datos.numeroHijos,
-            edadesHijos : datos.edadesHijos,
-            mail : datos.mail,  
-            telefono : datos.telefono,
+            nombreTitular: datos.nombreTitular,
+            rut: datos.rut,
+            mail: datos.mail,
+            telefono: datos.telefono,
             tipoSeguro: estado[0].tipoSeguro,
             nombreSeguro: estado[0].nombreSeguro
 
@@ -164,13 +154,14 @@ const Salud7 = () => {
                                                 </div>
                                                 */}
 											</div>
+        
 											<div className="row">
                                             <div className="col-12 col-lg-6">
 													<div className="form-group">
                                                         <InputStyled 
                                                         placeholder="Nombre titular de la poliza" 
                                                         type="text"
-                                                        name="nombre" 
+                                                        name="nombreTitular" 
                                                         onChange={handleInputChange} 
                                                         className="form-control"/>
                                                         
@@ -180,7 +171,7 @@ const Salud7 = () => {
 													<div className="form-group">
                                                         <InputStyled placeholder="Rut" 
                                                         type="text" 
-                                                        name="edadTitular"
+                                                        name="rut"
                                                         onChange={ handleInputChange } 
                                                         className="form-control"/>
 													</div>
